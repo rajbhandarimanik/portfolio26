@@ -1,4 +1,6 @@
 ---
+import "../styles/global.css";
+
 type Props = {
   title: string;
   description?: string;
@@ -15,57 +17,42 @@ const { title, description } = Astro.props;
     {description && <meta name="description" content={description} />}
   </head>
 
-  <body class="min-h-screen antialiased">
+  <body
+    class="min-h-screen antialiased"
+    style="background: rgb(var(--color-bg)); color: rgb(var(--color-fg));"
+  >
     <a
       href="#content"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded focus:bg-white focus:px-3 focus:py-2 focus:shadow"
-      style="color: rgb(var(--color-fg)); background: rgb(var(--color-bg));"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded focus:px-3 focus:py-2 focus:shadow"
+      style="background: rgb(var(--color-bg)); color: rgb(var(--color-fg));"
     >
       Skip to content
     </a>
 
-    <div class="mx-auto" style="max-width: var(--content-max);">
-      <div
-        class="grid min-h-screen grid-cols-1 lg:grid-cols-[auto_minmax(0,1fr)_auto]"
-        style={`--_sidebar: var(--sidebar-w); --_toc: var(--toc-w);`}
-      >
-        <!-- Left -->
-        <aside
-          class="border-b lg:border-b-0 lg:border-r"
-          style="border-color: rgb(var(--color-border)); width: var(--_sidebar);"
-        >
-          <div
-            class="sticky top-0 h-auto lg:h-screen overflow-auto"
-            style="padding: var(--space-6);"
-          >
-            <slot name="sidebar" />
-          </div>
-        </aside>
+    <div
+      class="grid h-screen"
+      style="grid-template-columns: var(--sidebar-w, 240px) minmax(0, 1fr) var(--toc-w, 240px);"
+    >
+      <!-- Left Sidebar -->
+      <aside class="border-r" style="border-color: rgb(var(--color-border));">
+        <div class="sticky top-0 h-screen overflow-y-auto" style="padding: var(--space-6);">
+          <slot name="sidebar" />
+        </div>
+      </aside>
 
-        <!-- Center -->
-        <main
-          id="content"
-          class="min-w-0 flex flex-col"
-          style="padding: var(--space-10) var(--space-6); gap: var(--space-6);"
-        >
-          <div style="margin: 0 auto; width: 100%; max-width: var(--content-reading);">
-            <slot />
-          </div>
-        </main>
+      <!-- Main Content -->
+      <main id="content" class="min-w-0 overflow-y-auto" style="padding: var(--space-10) var(--space-6);">
+        <article class="mx-auto w-full" style="max-width: var(--content-reading, 48rem);">
+          <slot />
+        </article>
+      </main>
 
-        <!-- Right -->
-        <aside
-          class="hidden border-l lg:block"
-          style="border-color: rgb(var(--color-border)); width: var(--_toc);"
-        >
-          <div
-            class="sticky top-0 h-screen overflow-auto"
-            style="padding: var(--space-6);"
-          >
-            <slot name="toc" />
-          </div>
-        </aside>
-      </div>
+      <!-- Right Sidebar (TOC) -->
+      <aside class="border-l" style="border-color: rgb(var(--color-border));">
+        <div class="sticky top-0 h-screen overflow-y-auto" style="padding: var(--space-6);">
+          <slot name="toc" />
+        </div>
+      </aside>
     </div>
   </body>
 </html>
