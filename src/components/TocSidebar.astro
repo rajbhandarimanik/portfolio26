@@ -1,45 +1,104 @@
 ---
-type Props = {
-  html: string; // we’ll pass the generated TOC HTML from the page
-};
+const { headings = [] } = Astro.props;
 
-const { html } = Astro.props;
+/*
+Expected headings shape:
+[
+  { slug: "context", text: "Context", depth: 2 },
+  { slug: "decisions", text: "Design Decisions", depth: 2 },
+  { slug: "tradeoffs", text: "Trade-offs", depth: 2 }
+]
+*/
 ---
 
-<aside aria-label="On this page" class="text-xs">
-  <div class="mb-3 font-mono uppercase tracking-wider text-zinc-400">
+<aside
+  aria-label="Table of contents"
+  class="toc"
+  style={`
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  `}
+>
+  <!-- Title -->
+  <div
+    style={`
+      font-size: var(--text-xs);
+      letter-spacing: var(--tracking-wide);
+      text-transform: uppercase;
+      color: rgb(var(--color-muted));
+      font-family: var(--font-mono);
+    `}
+  >
     On this page
   </div>
 
-  <!-- TOC HTML produced by remark-toc -->
-  <div class="toc max-h-96 overflow-auto" set:html={html} />
-
-  <style>
-    .toc :global(ul) {
+  <!-- List -->
+  <ul
+    style={`
       list-style: none;
       margin: 0;
       padding: 0;
-      border-left: 1px solid rgb(228 228 231);
-    }
-    .toc :global(li) { margin: 0; }
-    .toc :global(a) {
-      display: block;
-      padding: 6px 0 6px 12px;
-      text-decoration: none;
-      color: rgb(120 113 108);
-      transition: color 0.2s ease;
-    }
-    .toc :global(a:hover),
-    .toc :global(a:focus-visible) {
-      color: black;
-      outline: none;
-    }
-    .toc :global(a[aria-current="true"]) {
-      color: black;
-      font-weight: 500;
-      border-left: 2px solid black;
-      margin-left: -1px;
-      padding-left: 11px;
-    }
-  </style>
+      border-left: 1px solid rgb(var(--color-border));
+    `}
+  >
+    {headings.map((heading) => (
+      <li>
+        <a
+          href={`#${heading.slug}`}
+          style={`
+            display: block;
+            padding: var(--space-2) 0 var(--space-2) var(--space-4);
+            font-size: var(--text-sm);
+            text-decoration: none;
+            color: rgb(var(--color-muted));
+          `}
+        >
+          {heading.text}
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <!-- Optional resources block -->
+  <div style={`margin-top: var(--space-8);`}>
+    <div
+      style={`
+        margin-bottom: var(--space-3);
+        font-size: var(--text-xs);
+        letter-spacing: var(--tracking-wide);
+        text-transform: uppercase;
+        color: rgb(var(--color-muted));
+        font-family: var(--font-mono);
+      `}
+    >
+      Resources
+    </div>
+
+    <ul style="list-style: none; margin: 0; padding: 0;">
+      <li>
+        <a
+          href="#"
+          style={`
+            display: block;
+            padding: var(--space-2) 0;
+            font-size: var(--text-sm);
+            text-decoration: none;
+            color: rgb(var(--color-muted));
+          `}
+        >
+          Figma Library ↗
+        </a>
+      </li>
+    </ul>
+  </div>
 </aside>
+
+
+
+<style>
+  .toc a:hover,
+  .toc a:focus-visible {
+    color: rgb(var(--color-fg));
+  }
+</style>
