@@ -1,5 +1,40 @@
+/* ===============================
+   LIGHT MODE (DEFAULT)
+   =============================== */
 :root {
-  /* ====== CORE SEMANTIC TOKENS (Design System) ====== */
+  /* ====== CORE SEMANTIC TOKENS ====== */
+
+  /* ====== SPACING (8pt scale) ====== */
+  --space-0: 0px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* ====== TYPE SCALE ====== */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 28px; /* section lead / big callouts */
+  --text-4xl: 44px; /* page title */
+
+  --leading-tight: 1.1;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.65;
+
+  --tracking-tight: -0.03em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.06em;
+
+  /* ====== COLORS ====== */
   --color-bg: 255 255 255;
   --color-fg: 0 0 0;
   --color-muted: 113 113 122;
@@ -9,19 +44,47 @@
   --radius-sm: 8px;
   --radius-md: 12px;
 
-  /* ====== SHADCN CONTRACT (DO NOT STYLE DIRECTLY) ====== */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+    Helvetica, Arial;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas;
+
+  /* ====== LAYOUT ====== */
+  --sidebar-w: 240px;
+  --toc-w: 240px;
+  --content-max: 1200px;
+  --content-reading: 48rem; /* ~768px, comfy docs width */
+
+  /* ====== SHADCN CONTRACT ====== */
   --background: var(--color-bg);
   --foreground: var(--color-fg);
-
   --card: var(--color-surface);
   --card-foreground: var(--color-fg);
-
   --popover: var(--color-surface);
   --popover-foreground: var(--color-fg);
-
   --border: var(--color-border);
   --input: var(--color-border);
   --ring: var(--color-fg);
-
   --radius: var(--radius-sm);
+}
+
+/* ===============================
+   DARK MODE
+   =============================== */
+.dark {
+  --color-bg: 9 9 11;
+  --color-fg: 250 250 250;
+  --color-muted: 161 161 170;
+  --color-border: 39 39 42;
+  --color-surface: 24 24 27;
+
+  /* shadcn auto-updates */
+  --background: var(--color-bg);
+  --foreground: var(--color-fg);
+  --card: var(--color-surface);
+  --card-foreground: var(--color-fg);
+  --popover: var(--color-surface);
+  --popover-foreground: var(--color-fg);
+  --border: var(--color-border);
+  --input: var(--color-border);
+  --ring: var(--color-fg);
 }

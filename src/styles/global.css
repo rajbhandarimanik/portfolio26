@@ -13,10 +13,11 @@ body {
 body {
   margin: 0;
   font-family: var(--font-sans);
-  color: rgb(var(--fg));
-  background: rgb(var(--bg));
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: rgb(var(--color-fg));
+  background: rgb(var(--color-bg));
   -webkit-font-smoothing: antialiased;
-  line-height: 1.5;
 }
 
 a {
@@ -24,6 +25,6 @@ a {
 }
 
 :focus-visible {
-  outline: 2px solid rgb(var(--fg));
+  outline: 2px solid rgb(var(--color-fg));
   outline-offset: 2px;
 }

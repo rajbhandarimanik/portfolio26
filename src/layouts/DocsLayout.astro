@@ -7,7 +7,7 @@ type Props = {
 const { title, description } = Astro.props;
 ---
 
-<html lang={Astro.currentLocale || 'en'}>
+<html lang={Astro.currentLocale || "en"}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,33 +15,53 @@ const { title, description } = Astro.props;
     {description && <meta name="description" content={description} />}
   </head>
 
-  <body class="min-h-screen bg-white text-black antialiased">
+  <body class="min-h-screen antialiased">
     <a
       href="#content"
       class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded focus:bg-white focus:px-3 focus:py-2 focus:shadow"
+      style="color: rgb(var(--color-fg)); background: rgb(var(--color-bg));"
     >
       Skip to content
     </a>
 
-    <div class="mx-auto max-w-screen-xl">
-      <div class="grid min-h-screen grid-cols-1 lg:grid-cols-[240px_minmax(0,1fr)_240px]">
+    <div class="mx-auto" style="max-width: var(--content-max);">
+      <div
+        class="grid min-h-screen grid-cols-1 lg:grid-cols-[auto_minmax(0,1fr)_auto]"
+        style={`--_sidebar: var(--sidebar-w); --_toc: var(--toc-w);`}
+      >
         <!-- Left -->
-        <aside class="border-b border-zinc-200 lg:border-b-0 lg:border-r">
-          <div class="sticky top-0 h-auto lg:h-screen overflow-auto" style="padding: var(--space-6)">
+        <aside
+          class="border-b lg:border-b-0 lg:border-r"
+          style="border-color: rgb(var(--color-border)); width: var(--_sidebar);"
+        >
+          <div
+            class="sticky top-0 h-auto lg:h-screen overflow-auto"
+            style="padding: var(--space-6);"
+          >
             <slot name="sidebar" />
           </div>
         </aside>
 
         <!-- Center -->
-        <main id="content" class="min-w-0 flex flex-col" style="padding: var(--space-10) var(--space-6); gap: var(--space-6)">
-          <div style="margin: 0 auto; width: 100%; max-width: 48rem">
+        <main
+          id="content"
+          class="min-w-0 flex flex-col"
+          style="padding: var(--space-10) var(--space-6); gap: var(--space-6);"
+        >
+          <div style="margin: 0 auto; width: 100%; max-width: var(--content-reading);">
             <slot />
           </div>
         </main>
 
         <!-- Right -->
-        <aside class="hidden border-l border-zinc-200 lg:block">
-          <div class="sticky top-0 h-screen overflow-auto" style="padding: var(--space-6)">
+        <aside
+          class="hidden border-l lg:block"
+          style="border-color: rgb(var(--color-border)); width: var(--_toc);"
+        >
+          <div
+            class="sticky top-0 h-screen overflow-auto"
+            style="padding: var(--space-6);"
+          >
             <slot name="toc" />
           </div>
         </aside>
