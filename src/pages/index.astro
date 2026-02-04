@@ -1,17 +1,71 @@
 ---
+import DocsLayout from "../layouts/DocsLayout.astro";
+import SidebarNav from "../components/SidebarNav.astro";
+import TocSidebar from "../components/TocSidebar.astro";
 
+const title = "Manik Rajbhandari";
+const description = "Designer and developer crafting beautiful, performant digital experiences.";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<DocsLayout {title} {description}>
+  <SidebarNav slot="sidebar" />
+  <TocSidebar slot="toc" html="" />
+
+  <div class="space-y-12">
+    <header class="mb-10">
+      <h1 class="text-5xl lg:text-6xl font-semibold tracking-tight">
+        Manik Rajbhandari
+      </h1>
+      <p class="mt-4 max-w-[60ch] text-xl text-zinc-600">
+        Designer and developer passionate about creating intuitive, performant digital experiences. Specializing in
+        3D web, design systems, and product design.
+      </p>
+    </header>
+
+    <section>
+      <h2 class="text-2xl font-semibold mb-6">Featured Work</h2>
+      <div class="space-y-4">
+        <a
+          href="/case-studies/weather-canvas"
+          class="block group border border-zinc-200 rounded p-6 hover:border-zinc-400 hover:bg-zinc-50 transition-all"
+        >
+          <h3 class="text-lg font-semibold group-hover:text-zinc-700">Weather Canvas</h3>
+          <p class="text-sm text-zinc-600 mt-1">
+            Immersive 3D weather simulator with real-time data streaming and interactive visualization.
+          </p>
+          <div class="text-xs text-zinc-400 mt-3">Product Design, 3D Web, React</div>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-semibold mb-6">About</h2>
+      <p class="text-zinc-700 max-w-[60ch] leading-relaxed">
+        I'm a designer and front-end developer with 5+ years building products for startups and established companies.
+        I specialize in design systems, 3D web technologies, and creating products that balance aesthetic elegance with
+        technical rigor. Currently exploring the intersection of real-time data visualization and performant web
+        frameworks.
+      </p>
+      <a href="/about" class="inline-block mt-4 text-sm font-medium text-black hover:text-zinc-600 transition-colors">
+        Read more →
+      </a>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-semibold mb-6">Latest Writing</h2>
+      <div class="space-y-3">
+        <a href="/writing" class="block group">
+          <p class="group-hover:text-zinc-600 transition-colors">Building 3D Web Experiences with Three.js</p>
+          <p class="text-sm text-zinc-400">Feb 2026</p>
+        </a>
+        <a href="/writing" class="block group">
+          <p class="group-hover:text-zinc-600 transition-colors">Design Systems at Scale</p>
+          <p class="text-sm text-zinc-400">Jan 2026</p>
+        </a>
+      </div>
+      <a href="/writing" class="inline-block mt-4 text-sm font-medium text-black hover:text-zinc-600 transition-colors">
+        View all articles →
+      </a>
+    </section>
+  </div>
+</DocsLayout>

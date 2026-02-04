@@ -1,0 +1,51 @@
+---
+type Props = {
+  title: string;
+  description?: string;
+};
+
+const { title, description } = Astro.props;
+---
+
+<html lang={Astro.currentLocale || 'en'}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+  </head>
+
+  <body class="min-h-screen bg-white text-black antialiased">
+    <a
+      href="#content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded focus:bg-white focus:px-3 focus:py-2 focus:shadow"
+    >
+      Skip to content
+    </a>
+
+    <div class="mx-auto max-w-screen-xl">
+      <div class="grid min-h-screen grid-cols-1 lg:grid-cols-[240px_minmax(0,1fr)_240px]">
+        <!-- Left -->
+        <aside class="border-b border-zinc-200 lg:border-b-0 lg:border-r">
+          <div class="sticky top-0 h-auto lg:h-screen overflow-auto" style="padding: var(--space-6)">
+            <slot name="sidebar" />
+          </div>
+        </aside>
+
+        <!-- Center -->
+        <main id="content" class="min-w-0 flex flex-col" style="padding: var(--space-10) var(--space-6); gap: var(--space-6)">
+          <div style="margin: 0 auto; width: 100%; max-width: 48rem">
+            <slot />
+          </div>
+        </main>
+
+        <!-- Right -->
+        <aside class="hidden border-l border-zinc-200 lg:block">
+          <div class="sticky top-0 h-screen overflow-auto" style="padding: var(--space-6)">
+            <slot name="toc" />
+          </div>
+        </aside>
+      </div>
+    </div>
+  </body>
+</html>

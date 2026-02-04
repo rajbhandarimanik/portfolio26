@@ -1,0 +1,50 @@
+---
+import DocsLayout from "../layouts/DocsLayout.astro";
+import SidebarNav from "../components/SidebarNav.astro";
+import TocSidebar from "../components/TocSidebar.astro";
+
+const title = "About";
+const description = "Learn about Manik Rajbhandari, designer and developer.";
+---
+
+<DocsLayout {title} {description}>
+  <SidebarNav slot="sidebar" />
+  <TocSidebar slot="toc" html="" />
+
+  <header class="mb-10 border-b border-zinc-200 pb-8">
+    <h1 class="text-4xl font-semibold tracking-tight lg:text-5xl">About</h1>
+    <p class="mt-3 max-w-[60ch] text-lg text-zinc-600">
+      Designer and developer passionate about creating intuitive, performant digital experiences.
+    </p>
+  </header>
+
+  <div class="prose prose-sm max-w-none">
+    <h2>Background</h2>
+    <p>
+      I'm a designer and front-end developer based in the US. I specialize in creating digital products that balance
+      aesthetic elegance with technical rigor. My work spans product design, interaction design, and full-stack web
+      development.
+    </p>
+
+    <h2>Experience</h2>
+    <p>
+      Over the past 5 years, I've worked with startups and established companies to build products used by millions.
+      I've led design systems, mentored junior designers, and contributed to open-source projects focused on
+      performance and accessibility.
+    </p>
+
+    <h2>Approach</h2>
+    <p>
+      I believe great design is invisible—it anticipates needs, removes friction, and delights through subtlety. I
+      approach each project by understanding the problem deeply, prototyping rapidly, and iterating based on real user
+      feedback.
+    </p>
+
+    <h2>Currently</h2>
+    <p>
+      I'm exploring the intersection of 3D web technologies, real-time data visualization, and performant frameworks
+      like Astro and React. Outside of work, I enjoy writing about design, open-source development, and the future of
+      the web.
+    </p>
+  </div>
+</DocsLayout>

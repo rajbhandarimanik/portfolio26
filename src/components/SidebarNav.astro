@@ -1,0 +1,69 @@
+---
+const nav = [
+  {
+    label: "Case Studies",
+    items: [
+      { href: "/case-studies/weather-canvas", label: "Weather Canvas" },
+      // add more later
+    ],
+  },
+  {
+    label: "Context",
+    items: [
+      { href: "/about", label: "About" },
+      { href: "/resume", label: "Resume" },
+      { href: "/writing", label: "Writing" },
+    ],
+  },
+];
+
+const pathname = Astro.url.pathname;
+const isActive = (href: string) => pathname === href;
+const isGroupActive = (items: typeof nav[0]['items']) => items.some(item => isActive(item.href));
+---
+
+<nav aria-label="Primary" class="flex flex-col h-full">
+  <div class="flex-1">
+    <a href="/" class="text-lg font-semibold tracking-tight no-underline block hover:text-zinc-600 transition-colors">
+      Manik Rajbhandari
+    </a>
+
+    <div class="flex flex-col gap-8 mt-8">
+      {nav.map((group) => (
+        <div>
+          <div class={`mb-3 text-xs font-medium uppercase tracking-wider transition-colors ${
+            isGroupActive(group.items) ? 'text-black' : 'text-zinc-400'
+          }`}>
+            {group.label}
+          </div>
+
+          <ul class="space-y-1">
+            {group.items.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  aria-current={isActive(item.href) ? "page" : undefined}
+                  class:list={[
+                    "relative block rounded px-2 py-1.5 text-sm no-underline transition-colors",
+                    isActive(item.href)
+                      ? "text-black font-medium"
+                      : "text-zinc-600 hover:text-black hover:bg-zinc-100",
+                  ]}
+                >
+                  {isActive(item.href) && (
+                    <span class="absolute -left-4 top-1.5 text-xs text-black">→</span>
+                  )}
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  ))}
+    </div>
+  </div>
+
+  <div class="pt-6 text-xs text-zinc-400">
+    <span class="font-mono">v1.0 — 2026</span>
+  </div>
+</nav>

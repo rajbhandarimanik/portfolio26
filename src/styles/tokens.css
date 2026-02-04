@@ -1,0 +1,27 @@
+:root {
+  /* ====== CORE SEMANTIC TOKENS (Design System) ====== */
+  --color-bg: 255 255 255;
+  --color-fg: 0 0 0;
+  --color-muted: 113 113 122;
+  --color-border: 228 228 231;
+  --color-surface: 255 255 255;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+
+  /* ====== SHADCN CONTRACT (DO NOT STYLE DIRECTLY) ====== */
+  --background: var(--color-bg);
+  --foreground: var(--color-fg);
+
+  --card: var(--color-surface);
+  --card-foreground: var(--color-fg);
+
+  --popover: var(--color-surface);
+  --popover-foreground: var(--color-fg);
+
+  --border: var(--color-border);
+  --input: var(--color-border);
+  --ring: var(--color-fg);
+
+  --radius: var(--radius-sm);
+}

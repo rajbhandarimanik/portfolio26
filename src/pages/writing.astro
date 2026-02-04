@@ -1,0 +1,62 @@
+---
+import DocsLayout from "../layouts/DocsLayout.astro";
+import SidebarNav from "../components/SidebarNav.astro";
+import TocSidebar from "../components/TocSidebar.astro";
+
+const title = "Writing";
+const description = "Thoughts on design, development, and the web.";
+
+const articles = [
+  {
+    title: "Building 3D Web Experiences with Three.js",
+    date: "Feb 2026",
+    excerpt: "A deep dive into modern 3D web technologies and how to optimize for performance across devices.",
+  },
+  {
+    title: "Design Systems at Scale",
+    date: "Jan 2026",
+    excerpt: "Lessons learned building a design system that serves 3M+ users and 50+ products.",
+  },
+  {
+    title: "The Future of Web Performance",
+    date: "Dec 2025",
+    excerpt: "Exploring Core Web Vitals, edge computing, and what performance means in 2026.",
+  },
+  {
+    title: "Accessible Animations: A Practical Guide",
+    date: "Nov 2025",
+    excerpt: "How to create delightful animations that respect user preferences and accessibility needs.",
+  },
+  {
+    title: "React Server Components Explained",
+    date: "Oct 2025",
+    excerpt: "Understanding the new paradigm shift in how we structure React applications.",
+  },
+];
+---
+
+<DocsLayout {title} {description}>
+  <SidebarNav slot="sidebar" />
+  <TocSidebar slot="toc" html="" />
+
+  <header class="mb-10 border-b border-zinc-200 pb-8">
+    <h1 class="text-4xl font-semibold tracking-tight lg:text-5xl">Writing</h1>
+    <p class="mt-3 max-w-[60ch] text-lg text-zinc-600">
+      Essays and articles about design, development, and creating on the web.
+    </p>
+  </header>
+
+  <div class="space-y-6">
+    {articles.map((article) => (
+      <article class="border-b border-zinc-200 pb-6 last:border-b-0">
+        <a href="#" class="group">
+          <h2 class="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
+            {article.title}
+          </h2>
+        </a>
+        <p class="text-sm text-zinc-400 mt-1">{article.date}</p>
+        <p class="text-zinc-700 mt-3">{article.excerpt}</p>
+      </article>
+    ))}
+  </div>
+</DocsLayout>
